@@ -10,6 +10,7 @@ on:
 
 jobs:
   test:
+    name: 'Test service principal management'
     environment: 'Azure Demo'
     runs-on: ubuntu-latest
 
