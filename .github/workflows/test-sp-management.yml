@@ -3,13 +3,13 @@ name: test-sp-management
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
 
   workflow_dispatch:
 
 jobs:
-  build:
+  test:
+    name: 'Test service principal management'
+    environment: 'Azure Demo'
     runs-on: ubuntu-latest
 
     steps:
@@ -18,8 +18,8 @@ jobs:
       - name: Azure Login
         uses: azure/login@v1
         with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-        
+          creds: ${{ secrets.AZURE_CREDENTIAL }}
+
       - name: Azure CLI script
         uses: azure/CLI@v1
         with:
