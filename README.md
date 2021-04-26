@@ -16,7 +16,7 @@ To test this, the following must be done:
 1. An SP in Azure must be created with:
 
   ```bash
-  az ad sp create-for-rbac --name "GitHub SP Management" --sdk-auth --skip-assignment
+  az ad sp create-for-rbac --name "GitHub SP Management" --sdk-auth
   ```
 
 1. Use the Azure Portal to assign "GitHub SP Management" to the AD
