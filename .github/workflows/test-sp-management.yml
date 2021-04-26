@@ -25,7 +25,7 @@ jobs:
         with:
           azcliversion: latest
           inlineScript: |
-            az ad sp create-for-rbac --name "GitHub SP test" --sdk-auth --skip-assignment
+            az ad sp create-for-rbac --name "GitHub SP test" --sdk-auth
 
       - name: Delete created Service Principal
         uses: azure/CLI@v1
