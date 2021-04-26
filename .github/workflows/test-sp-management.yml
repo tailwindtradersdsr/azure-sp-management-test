@@ -1,4 +1,4 @@
-name: test-sp-management
+name: 'Test Azure SP management'
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  test:
+  test-sp-management:
     name: 'Test service principal management'
     environment: 'Azure Demo'
     runs-on: ubuntu-latest
@@ -15,14 +15,21 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Azure Login
+      - name: Azure Login with Service Principal
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIAL }}
 
-      - name: Azure CLI script
+      - name: Create a new Service Principal
         uses: azure/CLI@v1
         with:
           azcliversion: latest
           inlineScript: |
-            az account show
+            az ad sp create-for-rbac --name "GitHub SP test" --sdk-auth
+
+      - name: Delete created Service Principal
+        uses: azure/CLI@v1
+        with:
+          azcliversion: latest
+          inlineScript: |
+            az ad sp delete --id "GitHub SP test"
