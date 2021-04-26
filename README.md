@@ -1,0 +1,1 @@
+# azure-sp-management-test
