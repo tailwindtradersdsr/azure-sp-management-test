@@ -1,4 +1,4 @@
-name: 'Test Azure SP management'
+name: 'Test Azure SP management (AZ CLI)'
 
 on:
   push:
@@ -15,19 +15,19 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Azure Login with Service Principal
+      - name: 'Azure Login with management service principal'
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIAL }}
 
-      - name: Create a new Service Principal
+      - name: 'Create a new service principal'
         uses: azure/CLI@v1
         with:
           azcliversion: latest
           inlineScript: |
             az ad sp create-for-rbac --name "GitHub SP test" --sdk-auth
 
-      - name: Delete created Service Principal
+      - name: Delete created service principal
         uses: azure/CLI@v1
         with:
           azcliversion: latest
